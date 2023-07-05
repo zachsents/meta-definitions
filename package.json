@@ -1,0 +1,12 @@
+{
+    "name": "@zachsents/meta-definitions",
+    "version": "1.0.0",
+    "description": "Create dynamic module definitions in a directory.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "zachsents",
+    "license": "ISC",
+    "type": "module"
+}
