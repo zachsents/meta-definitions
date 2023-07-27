@@ -79,9 +79,16 @@ export async function buildBarrel({
     ...options
 } = {}) {
     const files = await findMetaDefinitionFiles(options)
-    const importNames = files.map(filePathToImportName)
+    const importNames = files.map(
+        file => filePathToImportName(path.relative(options.directory, file))
+    )
 
-    let barrelContent = importNames.map((importName, i) => `import ${importName} from "./${files[i].replaceAll("\\", "/")}"`).join("\n") + "\n"
+    let barrelContent = importNames.map((importName, i) => {
+        const importPath = path.relative(path.dirname(outputPath), files[i])
+            .replaceAll("\\", "/")
+
+        return `import ${importName} from "./${importPath}"`
+    }).join("\n") + "\n"
 
     if (definitionKey) {
         barrelContent += `
