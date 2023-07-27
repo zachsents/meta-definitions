@@ -96,5 +96,8 @@ export default [
 ]`
     }
 
-    return barrelContent
+    if (!outputPath)
+        return barrelContent
+
+    await fs.writeFile(outputPath, barrelContent)
 }
